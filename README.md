@@ -1,4 +1,4 @@
-# One-piece-encyclopedia
+# One-piece-api
 
-I've only created this repository so I can link to one place to my project. The parts of it are the application interface and the Rest API.
-the first is built using React and styled using Boostrap. And the second uses MongoDB as a database and is built with NodeJs (Express).
+This is a rest API built using Node js(express) and MongoDB. It's the back-end of my larger project, (the One-piece encyclopedia)[https://github.com/marzouk2002/One-piece-encyclopedia].
+It handles serving JSON and static files, also user-related stuff like login, register, and comments.
