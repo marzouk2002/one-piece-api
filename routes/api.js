@@ -14,7 +14,7 @@ router.get('/characters', async (req, res)=> {
         const pictureNum = char.gallery.numPicture
 
         const galArr = Array(pictureNum).fill(null).map((x, i) => {
-            return `/api/characters/${route}/pic-${i}.png`
+            return `https://one-piece-encyclo-api.herokuapp.com/api/characters/${route}/pic-${i}.png`
         })
         return {
             ...char,
@@ -31,7 +31,7 @@ router.get('/ep', async (req, res)=> {
         const route= episode.poster
         return {
             ...episode,
-            poster:`/api/episodes/${route}.png`
+            poster:`https://one-piece-encyclo-api.herokuapp.com/api/episodes/${route}.png`
         }
     })
     res.json(Data)
@@ -44,7 +44,7 @@ router.get('/arcs', async (req, res)=> {
         const route= arc.poster
         return {
             ...arc,
-            poster:`/api/arcs/${route}.png`
+            poster:`https://one-piece-encyclo-api.herokuapp.com/api/arcs/${route}.png`
         }
     })
     res.json(Data)
