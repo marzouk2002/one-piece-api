@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const Arcs = require('../models/Arc')
 const Episodes = require('../models/Episode')
@@ -14,7 +15,7 @@ router.get('/characters', async (req, res)=> {
         const pictureNum = char.gallery.numPicture
 
         const galArr = Array(pictureNum).fill(null).map((x, i) => {
-            return `https://one-piece-encyclo-api.herokuapp.com/api/characters/${route}/pic-${i}.png`
+            return `${process.env.HOST_URL}/api/characters/${route}/pic-${i}.png`
         })
         return {
             ...char,
@@ -31,7 +32,7 @@ router.get('/ep', async (req, res)=> {
         const route= episode.poster
         return {
             ...episode,
-            poster:`https://one-piece-encyclo-api.herokuapp.com/api/episodes/${route}.png`
+            poster:`${process.env.HOST_URL}/api/episodes/${route}.png`
         }
     })
     res.json(Data)
@@ -44,7 +45,7 @@ router.get('/arcs', async (req, res)=> {
         const route= arc.poster
         return {
             ...arc,
-            poster:`https://one-piece-encyclo-api.herokuapp.com/api/arcs/${route}.png`
+            poster:`${process.env.HOST_URL}/api/arcs/${route}.png`
         }
     })
     res.json(Data)
