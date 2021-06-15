@@ -26,8 +26,6 @@ app.use('/api',require('./routes/api'))
 
 app.use('/community',require('./routes/community'))
 
-app.use(express.static('application-interface/build'))
-
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT,()=>{
