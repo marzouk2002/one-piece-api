@@ -27,7 +27,7 @@ router.get('/characters', async (req, res)=> {
 
 //GET all episodes
 router.get('/ep', async (req, res)=> {
-    const allEp = await Episodes.find({})
+    const allEp = await Episodes.find({}).sort('number')
     const Data = allEp.map(episode=>{
         const route= episode.poster
         return {
