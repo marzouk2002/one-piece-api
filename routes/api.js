@@ -65,7 +65,7 @@ router.get('/arcs', async (req, res)=> {
 })
 
 // Get One Arc
-router.get('/arcs', async (req, res)=> {
+router.get('/arc', async (req, res)=> {
     let id = req.query._id;
     const arc = await Arcs.findById(id)
     res.json({ ...arc, poster:`${process.env.HOST_URL}/api/arcs/${arc.poster}.png`})
