@@ -64,6 +64,14 @@ router.get('/arcs', async (req, res)=> {
     res.json(Data)
 })
 
+// Get One Arc
+router.get('/arcs', async (req, res)=> {
+    let id = req.query._id;
+    const arc = await Arcs.findById(id)
+    res.json({ ...arc, poster:`${process.env.HOST_URL}/api/arcs/${arc.route}.png`})
+})
+
+
 router.use(express.static(path.join(__dirname, '..', 'gallery')))
 
 module.exports = router
