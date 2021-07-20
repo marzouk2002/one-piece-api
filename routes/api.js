@@ -48,7 +48,7 @@ router.get('/eps', async (req, res)=> {
 router.get('/ep', async (req, res)=> {
     let id = req.query._id;
     const episode = await Episodes.findById(id)
-    res.json({ ...episode, poster:`${process.env.HOST_URL}/api/episodes/${episode.route}.png`})
+    res.json({ ...episode, poster:`${process.env.HOST_URL}/api/episodes/${episode.poster}.png`})
 })
 
 //GET all arcs 
@@ -68,7 +68,7 @@ router.get('/arcs', async (req, res)=> {
 router.get('/arcs', async (req, res)=> {
     let id = req.query._id;
     const arc = await Arcs.findById(id)
-    res.json({ ...arc, poster:`${process.env.HOST_URL}/api/arcs/${arc.route}.png`})
+    res.json({ ...arc, poster:`${process.env.HOST_URL}/api/arcs/${arc.poster}.png`})
 })
 
 
