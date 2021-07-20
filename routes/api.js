@@ -9,17 +9,16 @@ const router = express.Router()
 
 //GET aLL characters
 router.get('/characters', async (req, res)=> {
-    const allChar = await Characters.find({})
-    const Data= allChar.map((char)=>{
-        const route= char.gallery.route
-        const pictureNum = char.gallery.numPicture
+    const allChar = await Characters.find({}, { name: 1, _id: 1, gallery: 1 })
+    const Data= allChar.map(({ name, _id, gallery})=>{
+        // const pictureNum = char.gallery.numPicture
 
-        const galArr = Array(pictureNum).fill(null).map((x, i) => {
-            return `${process.env.HOST_URL}/api/characters/${route}/pic-${i}.png`
-        })
+        // const galArr = Array(pictureNum).fill(null).map((x, i) => {
+        //     return `${process.env.HOST_URL}/api/characters/${route}/pic-${i}.png`
+        // })
         return {
-            ...char,
-            gallery: [...galArr]
+            name, _id,
+            picture: `${process.env.HOST_URL}/api/characters/${gallery.route}/pic-0.png`
         }
      })
     res.json(Data)
