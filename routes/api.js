@@ -53,7 +53,7 @@ router.get('/ep', async (req, res)=> {
 
 //GET all arcs 
 router.get('/arcs', async (req, res)=> {
-    const allArc= await Arcs.find({}, { name: 1, _id: 1, gallery: 1 })
+    const allArc= await Arcs.find({}, { _id: 1, poster: 1, title: 1})
     const Data = allArc.map(arc=>{
         const route= arc.poster
         return {
