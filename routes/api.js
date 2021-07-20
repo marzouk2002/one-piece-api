@@ -24,6 +24,17 @@ router.get('/characters', async (req, res)=> {
     res.json(Data)
 })
 
+// Get One Character
+router.get('/character', async (req, res)=> {
+    let id = req.query._id;
+    const Char = await Characters.findById(id)
+    const { numPicture, route } = Char.gallery
+    const gallery = Array(numPicture).fill(null).map((x, i) => {
+        return `${process.env.HOST_URL}/api/characters/${route}/pic-${i}.png`
+    })
+    res.json({...Char, gallery})
+})
+
 //GET all episodes
 router.get('/ep', async (req, res)=> {
     const allEp = await Episodes.find({}).sort('number')
