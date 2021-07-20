@@ -11,11 +11,7 @@ const router = express.Router()
 router.get('/characters', async (req, res)=> {
     const allChar = await Characters.find({}, { name: 1, _id: 1, gallery: 1 })
     const Data= allChar.map(({ name, _id, gallery})=>{
-        // const pictureNum = char.gallery.numPicture
-
-        // const galArr = Array(pictureNum).fill(null).map((x, i) => {
-        //     return `${process.env.HOST_URL}/api/characters/${route}/pic-${i}.png`
-        // })
+        
         return {
             name, _id,
             picture: `${process.env.HOST_URL}/api/characters/${gallery.route}/pic-0.png`
@@ -36,8 +32,8 @@ router.get('/character', async (req, res)=> {
 })
 
 //GET all episodes
-router.get('/ep', async (req, res)=> {
-    const allEp = await Episodes.find({}).sort('number')
+router.get('/eps', async (req, res)=> {
+    const allEp = await Episodes.find({}, { number: 1, _id: 1, poster: 1, title: 1}).sort('number')
     const Data = allEp.map(episode=>{
         const route= episode.poster
         return {
@@ -48,9 +44,16 @@ router.get('/ep', async (req, res)=> {
     res.json(Data)
 })
 
+//GET One Episode
+router.get('/ep', async (req, res)=> {
+    let id = req.query._id;
+    const episode = await Episodes.findById(id)
+    res.json({ ...episode, poster:`${process.env.HOST_URL}/api/episodes/${episode.route}.png`})
+})
+
 //GET all arcs 
 router.get('/arcs', async (req, res)=> {
-    const allArc= await Arcs.find({})
+    const allArc= await Arcs.find({}, { name: 1, _id: 1, gallery: 1 })
     const Data = allArc.map(arc=>{
         const route= arc.poster
         return {
